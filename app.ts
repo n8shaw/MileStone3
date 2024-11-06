@@ -1,15 +1,15 @@
-// server.ts
+// app.ts
 
-import { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
-import { Client } from "https://deno.land/x/mysql/mod.ts";
+import { Application, Router, Context } from "https://deno.land/x/oak@v12.6.1/mod.ts";
+import { Client } from "https://deno.land/x/mysql@v2.12.1/mod.ts";
 
 // Database connection configuration
 const client = await new Client().connect({
-  hostname: "your-rds-endpoint.amazonaws.com",
-  username: "your-username",
-  db: "icecreamdonuts",
-  password: "your-password",
-  port: 3306,
+  hostname: Deno.env.get("DB_HOST") || "localhost",
+  username: Deno.env.get("DB_USER") || "root",
+  password: Deno.env.get("DB_PASS") || "",
+  db: Deno.env.get("DB_NAME") || "icecreamdonuts",
+  port: parseInt(Deno.env.get("DB_PORT") || "3306"),
 });
 
 // Initialize Oak application and router
@@ -79,5 +79,6 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 // Start server
-console.log("Server running on http://localhost:8000");
-await app.listen({ port: 8000 });
+const port = parseInt(Deno.env.get("PORT") || "3000");
+console.log(`Server running on http://localhost:${port}`);
+await app.listen({ port });
