@@ -5,18 +5,17 @@ files:
     destination: /home/ec2-user/deno-app
 hooks:
   ApplicationStop:
-    - location: scripts/stop_app.sh
-      timeout: 300
-      runas: ec2-user
-  BeforeInstall:
-    - location: scripts/before_install.sh
-      timeout: 300
-      runas: ec2-user
-  AfterInstall:
-    - location: scripts/after_install.sh
+    - location: appspec_scripts/stop_app.sh
+      content: |
+        #!/bin/bash
+        pkill -f "deno run"
       timeout: 300
       runas: ec2-user
   ApplicationStart:
-    - location: scripts/start_app.sh
+    - location: appspec_scripts/start_app.sh
+      content: |
+        #!/bin/bash
+        cd /home/ec2-user/deno-app
+        /home/ec2-user/.deno/bin/deno run --allow-net --allow-env app.ts > /dev/null 2>&1 &
       timeout: 300
       runas: ec2-user
