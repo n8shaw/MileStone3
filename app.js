@@ -1,12 +1,15 @@
 const express = require('express');
+const knex = require('knex');
 const app = express();
-const knex = require('knex')({
+
+// Configure knex to use environment variables
+const db = knex({
   client: 'mysql',
   connection: {
-    host: 'your-rds-endpoint.amazonaws.com',
-    user: 'your-username',
-    password: 'your-password',
-    database: 'icecreamdonuts',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     port: 3306
   }
 });
@@ -19,7 +22,7 @@ app.use(express.static('public'));
 
 // Route to display donuts
 app.get('/', (req, res) => {
-  knex.select('url', 'item_name')
+  db.select('url', 'item_name')
     .from('items')
     .then(items => {
       res.render('index', { items: items });
@@ -31,6 +34,7 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
