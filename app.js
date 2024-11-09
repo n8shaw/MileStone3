@@ -2,7 +2,7 @@ const express = require('express');
 const knex = require('knex');  // This line is fine, no need to reassign knex
 const app = express();
 
-// Configure knex to use environment variables (no need to reassign knex here)
+// Configure knex to use environment variables
 const db = knex({
   client: 'mysql',
   connection: {
