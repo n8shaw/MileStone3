@@ -13,10 +13,6 @@ hooks:
     - location: scripts/set_permissions.sh
       timeout: 300
       runas: ec2-user
-  ApplicationStop:
-    - location: scripts/app_stop.sh
-      timeout: 300
-      runas: ec2-user
   AfterInstall:
     - location: scripts/app_install.sh
       timeout: 300
