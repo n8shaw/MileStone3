@@ -3,7 +3,7 @@ const knex = require('knex');
 const app = express();
 
 // Configure knex to use environment variables
-const knex = require('knex')({
+knex = require('knex')({
   client: 'mysql',
   connection: {
     host: 'database-1.c1iugckwg6rp.us-east-2.rds.amazonaws.com',  // Strings must be wrapped in quotes
