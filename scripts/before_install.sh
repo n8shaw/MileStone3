@@ -8,11 +8,11 @@ cd /home/ec2-user/MileStone3
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Install a compatible version of Node.js
-nvm install 18
+# Install a compatible version of Node.js (v16 is known to be more compatible with older GLIBC versions)
+nvm install 16
 
-# Use Node.js v18
-nvm use 18
+# Use Node.js v16
+nvm use 16
 
 # Install project dependencies
 npm install
