@@ -1,18 +1,21 @@
 #!/bin/bash
 
-# Create the directory if it doesn't exist
+# Ensure the directory exists and navigate there
 mkdir -p /home/ec2-user/MileStone3
 cd /home/ec2-user/MileStone3
 
-# Load NVM
+# Clone the repository (replace with your actual repo URL)
+git clone https://github.com/n8shaw/MileStone3.git .
+
+# Checkout the 'development' branch
+git checkout nate
+
+# Install Node.js
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Install a compatible version of Node.js (v16 is known to be more compatible with older GLIBC versions)
 nvm install 16
-
-# Use Node.js v16
 nvm use 16
 
-# Install project dependencies
+# Install dependencies
 npm install
+
