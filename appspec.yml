@@ -1,6 +1,5 @@
 version: 0.0
 os: linux
-# copy all files from CodeCommit to app directory
 files:
   - source: /
     destination: /home/ec2-user/MileStone3
@@ -10,6 +9,10 @@ permissions:
     owner: ec2-user
     group: ec2-user    
 hooks:
+  BeforeInstall:
+    - location: scripts/set_permissions.sh
+      timeout: 300
+      runas: ec2-user
   ApplicationStop:
     - location: scripts/app_stop.sh
       timeout: 300
