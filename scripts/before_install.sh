@@ -4,8 +4,8 @@
 mkdir -p /home/ec2-user/MileStone3
 cd /home/ec2-user/MileStone3
 
-# If the directory is not empty, remove existing files
-rm -rf *
+# If the directory is not empty, remove existing files (but not .git directory)
+find . ! -name '.git' -type f -exec rm -f {} +
 
 # Clone the repository (replace with your actual repo URL)
 git clone https://github.com/n8shaw/MileStone3.git .
@@ -18,4 +18,3 @@ nvm use 16
 
 # Install dependencies
 npm install
-
