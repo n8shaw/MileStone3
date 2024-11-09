@@ -1,19 +1,18 @@
 const express = require('express');
-const knex = require('knex');
+const knex = require('knex');  // This line is fine, no need to reassign knex
 const app = express();
 
-// Configure knex to use environment variables
-knex = require('knex')({
+// Configure knex to use environment variables (no need to reassign knex here)
+const db = knex({
   client: 'mysql',
   connection: {
-    host: 'database-1.c1iugckwg6rp.us-east-2.rds.amazonaws.com',  // Strings must be wrapped in quotes
-    user: 'admin',  // Strings must be wrapped in quotes
-    password: 'Password1!',  // Strings must be wrapped in quotes
-    database: 'donuts',  // Strings must be wrapped in quotes
+    host: 'database-1.c1iugckwg6rp.us-east-2.rds.amazonaws.com',
+    user: 'admin',
+    password: 'Password1!',
+    database: 'donuts',
     port: 3306
   }
 });
-
 
 // Set view engine to EJS
 app.set('view engine', 'ejs');
