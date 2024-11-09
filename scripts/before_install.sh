@@ -4,6 +4,7 @@
 cd /home/ec2-user/MileStone3
 
 # Remove any existing node_modules (to ensure a fresh install)
+sudo rm -rf /home/ec2-user/MileStone3/package-lock.json
 sudo rm -rf /home/ec2-user/MileStone3/*
 
 
