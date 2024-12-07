@@ -6,7 +6,7 @@ const app = express();
 const db = knex({
   client: 'mysql',
   connection: {
-    host: 'database-1.c1iugckwg6rp.us-east-2.rds.amazonaws.com',
+    host: 'donut-db.c1iugckwg6rp.us-east-2.rds.amazonaws.com',
     user: 'admin',
     password: 'Password1!',
     database: 'donuts',
